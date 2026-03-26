@@ -1,0 +1,86 @@
+.page {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.2);
+  padding: 48px 40px;
+  width: 100%; max-width: 420px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 60px rgba(0,245,255,0.08);
+}
+
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, #00f5ff, #7b2fff, #ff2d6b);
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; letter-spacing: 0.15em;
+  background: linear-gradient(135deg, #00f5ff, #7b2fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(0,245,255,0.4));
+  margin-bottom: 6px;
+}
+
+.tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: #00f5ff;
+  letter-spacing: 0.3em; opacity: 0.6;
+  margin-bottom: 28px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,245,255,0.3), transparent);
+  margin-bottom: 28px;
+}
+
+.prompt {
+  font-size: 16px; color: #8a9ab8;
+  margin-bottom: 24px; line-height: 1.5;
+  font-family: 'Rajdhani', sans-serif; font-weight: 500;
+}
+
+.googleBtn {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 20px;
+  background: #fff; border: none;
+  color: #333;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px; font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.googleBtn:hover { background: #f5f5f5; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.googleBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.note {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: #5a6a8a;
+  letter-spacing: 0.08em; line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.back {
+  display: block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; color: #5a6a8a;
+  letter-spacing: 0.2em;
+  transition: color 0.2s;
+}
+.back:hover { color: #00f5ff; }

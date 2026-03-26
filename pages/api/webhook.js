@@ -1,4 +1,5 @@
 import Stripe from 'stripe'
+import { upsertSubscriber } from '../../lib/supabase'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -27,18 +28,71 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`)
   }
 
-  // Handle events
-  switch (event.type) {
-    case 'checkout.session.completed':
-      console.log('New subscriber:', event.data.object.customer_email)
-      // TODO: Save customer to your DB / grant access
-      break
-    case 'customer.subscription.deleted':
-      console.log('Subscription cancelled:', event.data.object.customer)
-      // TODO: Revoke access
-      break
-    default:
-      console.log(`Unhandled event type: ${event.type}`)
+  try {
+    switch (event.type) {
+
+      case 'checkout.session.completed': {
+        const session = event.data.object
+        // Retrieve full subscription to get period end
+        const subscription = await stripe.subscriptions.retrieve(session.subscription)
+        await upsertSubscriber({
+          email: session.customer_email || session.customer_details?.email,
+          stripeCustomerId: session.customer,
+          stripeSubscriptionId: session.subscription,
+          status: 'active',
+          expiresAt: new Date(subscription.current_period_end * 1000).toISOString()
+        })
+        console.log('New subscriber:', session.customer_details?.email)
+        break
+      }
+
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object
+        if (invoice.subscription) {
+          const subscription = await stripe.subscriptions.retrieve(invoice.subscription)
+          const customer = await stripe.customers.retrieve(invoice.customer)
+          await upsertSubscriber({
+            email: customer.email,
+            stripeCustomerId: invoice.customer,
+            stripeSubscriptionId: invoice.subscription,
+            status: 'active',
+            expiresAt: new Date(subscription.current_period_end * 1000).toISOString()
+          })
+        }
+        break
+      }
+
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object
+        const customer = await stripe.customers.retrieve(subscription.customer)
+        await upsertSubscriber({
+          email: customer.email,
+          stripeCustomerId: subscription.customer,
+          stripeSubscriptionId: subscription.id,
+          status: subscription.status,
+          expiresAt: new Date(subscription.current_period_end * 1000).toISOString()
+        })
+        break
+      }
+
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object
+        const customer = await stripe.customers.retrieve(subscription.customer)
+        await upsertSubscriber({
+          email: customer.email,
+          stripeCustomerId: subscription.customer,
+          stripeSubscriptionId: subscription.id,
+          status: 'canceled',
+          expiresAt: null
+        })
+        console.log('Subscription canceled:', customer.email)
+        break
+      }
+
+    }
+  } catch (err) {
+    console.error('Webhook handler error:', err)
+    return res.status(500).json({ error: 'Webhook handler failed' })
   }
 
   res.status(200).json({ received: true })

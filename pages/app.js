@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSession, signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import styles from '../styles/App.module.css'
 
 const ROLES = {
@@ -20,7 +22,6 @@ const ROLE_COLORS = {
 function HeroCard({ hero, index }) {
   const [imgError, setImgError] = useState(false)
   const roleColor = ROLE_COLORS[hero.role] || '#00f5ff'
-
   return (
     <div className={styles.heroCard} style={{ animationDelay: `${index * 0.08}s` }}>
       <div className={styles.heroPortrait}>
@@ -33,9 +34,7 @@ function HeroCard({ hero, index }) {
       </div>
       <div className={styles.heroInfo}>
         <div className={styles.heroName}>{hero.name}</div>
-        <div className={styles.heroRole} style={{ color: roleColor, borderColor: roleColor + '55', background: roleColor + '15' }}>
-          {hero.role}
-        </div>
+        <div className={styles.heroRole} style={{ color: roleColor, borderColor: roleColor + '55', background: roleColor + '15' }}>{hero.role}</div>
         <div className={styles.heroReason}>{hero.reason}</div>
       </div>
     </div>
@@ -64,6 +63,12 @@ function GameplanPhase({ label, color, text }) {
 }
 
 export default function AppPage() {
+  const { data: session, status } = useSession()
+  const router = useRouter()
+
+  const [authChecked, setAuthChecked] = useState(false)
+  const [isSubscribed, setIsSubscribed] = useState(false)
+
   const [game, setGame] = useState('valorant')
   const [map, setMap] = useState('')
   const [rank, setRank] = useState('')
@@ -72,6 +77,29 @@ export default function AppPage() {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
+
+  // Gate: check login + subscription on mount
+  useEffect(() => {
+    if (status === 'loading') return
+
+    if (!session) {
+      router.push('/login?callbackUrl=/app')
+      return
+    }
+
+    // Check subscription
+    fetch('/api/check-subscription')
+      .then(r => r.json())
+      .then(data => {
+        if (!data.subscribed) {
+          router.push('/?reason=not_subscribed')
+        } else {
+          setIsSubscribed(true)
+          setAuthChecked(true)
+        }
+      })
+      .catch(() => router.push('/'))
+  }, [session, status])
 
   const toggleRole = (role) => {
     setSelectedRoles(prev => {
@@ -109,6 +137,17 @@ export default function AppPage() {
 
   const gameLabels = { valorant: 'VALORANT', lol: 'LEAGUE OF LEGENDS', overwatch: 'OVERWATCH 2' }
 
+  // Show loading screen while checking auth
+  if (!authChecked) {
+    return (
+      <div className={styles.gateScreen}>
+        <div className={styles.gateLogo}>SYNAPSE</div>
+        <div className={styles.gateLoading}>VERIFYING ACCESS...</div>
+        <div className={styles.gateBar} />
+      </div>
+    )
+  }
+
   return (
     <>
       <Head><title>SYNAPSE — Optimizer</title></Head>
@@ -116,6 +155,10 @@ export default function AppPage() {
         <header className={styles.header}>
           <a href="/" className={styles.logo}>SYNAPSE</a>
           <div className={styles.tagline}>// TEAM COMPOSITION OPTIMIZER //</div>
+          <div className={styles.userBar}>
+            <span className={styles.userEmail}>{session?.user?.email}</span>
+            <button className={styles.signOutBtn} onClick={() => signOut({ callbackUrl: '/' })}>SIGN OUT</button>
+          </div>
         </header>
         <div className={styles.divider} />
 
@@ -134,7 +177,7 @@ export default function AppPage() {
               <div className={styles.formGroup}>
                 <label>Map / Arena</label>
                 <input type="text" value={map} onChange={e => setMap(e.target.value)}
-                  placeholder={game === 'valorant' ? 'e.g. Ascent, Haven...' : game === 'lol' ? "e.g. Summoner's Rift..." : 'e.g. King\'s Row...'} />
+                  placeholder={game === 'valorant' ? 'e.g. Ascent, Haven...' : game === 'lol' ? "e.g. Summoner's Rift..." : "e.g. King's Row..."} />
               </div>
               <div className={styles.formGroup}>
                 <label>Rank / Skill Level</label>
@@ -173,7 +216,6 @@ export default function AppPage() {
             </button>
           </div>
 
-          {/* RESULTS */}
           {result && (
             <div className={styles.results}>
               <div className={styles.sectionLabel}>// RECOMMENDED COMPOSITION</div>
@@ -185,11 +227,9 @@ export default function AppPage() {
                 <Section icon="🎯" title="WIN CONDITION" color="#00f5ff">
                   <p>{result.winCondition}</p>
                 </Section>
-
                 <Section icon="📋" title="DRAFT PRIORITY" color="#f39c12">
                   <p>{result.draftPriority}</p>
                 </Section>
-
                 <Section icon="🔗" title="KEY SYNERGIES" color="#7b2fff">
                   <div className={styles.synergyGrid}>
                     {result.synergies?.map((s, i) => (
@@ -200,11 +240,9 @@ export default function AppPage() {
                     ))}
                   </div>
                 </Section>
-
                 <Section icon="🛡️" title="COUNTERS & WEAKNESSES" color="#ff2d6b">
                   <p>{result.weaknesses}</p>
                 </Section>
-
                 <Section icon="📈" title="GAME PLAN" color="#2ecc71">
                   <div className={styles.gameplan}>
                     <GameplanPhase label="EARLY" color="#f39c12" text={result.gameplan?.early} />

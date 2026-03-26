@@ -317,3 +317,60 @@
   .heroGrid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   .synergyGrid { grid-template-columns: 1fr; }
 }
+
+/* GATE SCREEN */
+.gateScreen {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: #050810;
+}
+
+.gateLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px; letter-spacing: 0.15em;
+  background: linear-gradient(135deg, #00f5ff, #7b2fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(0,245,255,0.5));
+  margin-bottom: 20px;
+}
+
+.gateLoading {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; color: #00f5ff;
+  letter-spacing: 0.4em;
+  animation: blink 1s step-end infinite;
+  margin-bottom: 20px;
+}
+
+.gateBar {
+  width: 200px; height: 2px;
+  background: linear-gradient(90deg, #7b2fff, #00f5ff, #ff2d6b);
+  background-size: 200%;
+  animation: loading 1.2s linear infinite;
+}
+
+/* USER BAR */
+.userBar {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 10px; justify-content: center;
+}
+
+.userEmail {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: #5a6a8a;
+  letter-spacing: 0.1em;
+}
+
+.signOutBtn {
+  background: transparent;
+  border: 1px solid rgba(255,45,107,0.3);
+  color: #ff2d6b;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  padding: 4px 10px; cursor: pointer;
+  transition: all 0.2s;
+}
+.signOutBtn:hover { background: rgba(255,45,107,0.1); border-color: #ff2d6b; }
