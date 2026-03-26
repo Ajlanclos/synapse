@@ -1,0 +1,306 @@
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(0,245,255,0.1);
+  position: sticky;
+  top: 0;
+  background: rgba(5,8,16,0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.navLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, #00f5ff, #7b2fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navCta {
+  background: transparent;
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 10px 20px;
+  transition: all 0.2s;
+}
+
+.navCta:hover {
+  background: rgba(0,245,255,0.1);
+  box-shadow: 0 0 20px rgba(0,245,255,0.3);
+}
+
+.navCta:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 100px 20px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroBadge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #00f5ff;
+  letter-spacing: 0.4em;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.heroTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 12vw, 110px);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+  color: #c8d8f0;
+}
+
+.accent {
+  background: linear-gradient(135deg, #00f5ff 0%, #7b2fff 50%, #ff2d6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(0,245,255,0.4));
+}
+
+.heroSub {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #5a6a8a;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  font-weight: 500;
+}
+
+.heroGames {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.gameTag {
+  border: 1px solid rgba(0,245,255,0.25);
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #00f5ff;
+  background: rgba(0,245,255,0.06);
+}
+
+.heroCta {
+  display: inline-block;
+  padding: 20px 48px;
+  background: linear-gradient(135deg, rgba(0,245,255,0.15), rgba(123,47,255,0.15));
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  transition: all 0.3s;
+  box-shadow: 0 0 40px rgba(0,245,255,0.15);
+}
+
+.heroCta:hover {
+  background: linear-gradient(135deg, rgba(0,245,255,0.25), rgba(123,47,255,0.25));
+  box-shadow: 0 0 60px rgba(0,245,255,0.35);
+  letter-spacing: 0.25em;
+}
+
+.heroCta:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.heroNote {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #5a6a8a;
+  letter-spacing: 0.1em;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* FEATURES */
+.features {
+  padding: 60px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.featureCard {
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.1);
+  padding: 24px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(180deg, #00f5ff, #7b2fff);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.featureCard:hover {
+  border-color: rgba(0,245,255,0.3);
+  transform: translateY(-2px);
+}
+
+.featureCard:hover::before { opacity: 1; }
+
+.featureIcon { font-size: 28px; margin-bottom: 12px; }
+
+.featureTitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: #00f5ff;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+
+.featureDesc {
+  font-size: 15px;
+  color: #5a6a8a;
+  line-height: 1.6;
+}
+
+/* PRICING */
+.pricing {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.sectionLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #00f5ff;
+  letter-spacing: 0.4em;
+  margin-bottom: 40px;
+  opacity: 0.7;
+}
+
+.pricingCard {
+  display: inline-block;
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.3);
+  padding: 48px;
+  min-width: 360px;
+  position: relative;
+  box-shadow: 0 0 60px rgba(0,245,255,0.1);
+}
+
+.pricingBadge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #00f5ff;
+  letter-spacing: 0.4em;
+  margin-bottom: 20px;
+  background: rgba(0,245,255,0.1);
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(0,245,255,0.3);
+}
+
+.pricingAmount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  color: #c8d8f0;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.pricingAmount span {
+  font-size: 28px;
+  color: #5a6a8a;
+}
+
+.pricingList {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 36px;
+}
+
+.pricingList li {
+  padding: 10px 0;
+  font-size: 16px;
+  color: #c8d8f0;
+  border-bottom: 1px solid rgba(0,245,255,0.07);
+  letter-spacing: 0.05em;
+}
+
+.pricingCta {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(0,245,255,0.15), rgba(123,47,255,0.15));
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  transition: all 0.3s;
+}
+
+.pricingCta:hover {
+  background: linear-gradient(135deg, rgba(0,245,255,0.25), rgba(123,47,255,0.25));
+  box-shadow: 0 0 40px rgba(0,245,255,0.3);
+}
+
+.pricingCta:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* FOOTER */
+.footer {
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid rgba(0,245,255,0.08);
+  margin-top: 40px;
+}
+
+.footerLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: #5a6a8a;
+  margin-bottom: 12px;
+}
+
+.footerText {
+  font-size: 13px;
+  color: #5a6a8a;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+@media (max-width: 600px) {
+  .nav { padding: 16px 20px; }
+  .navCta { display: none; }
+  .pricingCard { min-width: auto; width: 100%; padding: 32px 24px; }
+}

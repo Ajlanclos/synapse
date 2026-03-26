@@ -1,0 +1,336 @@
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 30px 40px 20px;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 80px);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  background: linear-gradient(135deg, #00f5ff 0%, #7b2fff 50%, #ff2d6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(0,245,255,0.4));
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { filter: drop-shadow(0 0 30px rgba(0,245,255,0.4)); }
+  50% { filter: drop-shadow(0 0 50px rgba(0,245,255,0.7)); }
+}
+
+.tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: #00f5ff;
+  letter-spacing: 0.35em;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+  opacity: 0.3;
+  margin: 0 0 30px;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+.sectionLabel {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #00f5ff;
+  letter-spacing: 0.4em;
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+/* GAME TABS */
+.gameTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.gameTab {
+  flex: 1;
+  min-width: 120px;
+  padding: 14px 16px;
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.15);
+  color: #5a6a8a;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gameTab::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: #00f5ff;
+  transition: width 0.3s;
+}
+
+.gameTab:hover { color: #c8d8f0; border-color: rgba(0,245,255,0.4); }
+.gameTab:hover::after { width: 100%; }
+
+.gameTab.active {
+  background: rgba(0,245,255,0.08);
+  border-color: #00f5ff;
+  color: #00f5ff;
+  box-shadow: 0 0 20px rgba(0,245,255,0.15);
+}
+
+.gameTab.active::after { width: 100%; }
+
+/* PANEL */
+.panel {
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.15);
+  padding: 28px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, #00f5ff, #7b2fff);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup.full { grid-column: 1 / -1; }
+
+.formGroup label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: #5a6a8a;
+  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  background: #0f1628;
+  border: 1px solid rgba(0,245,255,0.12);
+  color: #c8d8f0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 0 1px rgba(0,245,255,0.2);
+}
+
+.formGroup select option { background: #0f1628; }
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ROLE CHIPS */
+.roleGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.roleChip {
+  padding: 8px 14px;
+  border: 1px solid rgba(0,245,255,0.15);
+  background: #0f1628;
+  color: #5a6a8a;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.roleChip:hover { border-color: rgba(0,245,255,0.4); color: #c8d8f0; }
+
+.roleChip.selected {
+  background: rgba(0,245,255,0.12);
+  border-color: #00f5ff;
+  color: #00f5ff;
+}
+
+/* GENERATE BUTTON */
+.btnGenerate {
+  width: 100%;
+  padding: 18px;
+  background: transparent;
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.25em;
+  transition: all 0.3s;
+}
+
+.btnGenerate:hover {
+  background: rgba(0,245,255,0.08);
+  box-shadow: 0 0 30px rgba(0,245,255,0.3);
+  letter-spacing: 0.3em;
+}
+
+.btnGenerate:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* LOADING */
+.loadingBar {
+  height: 2px;
+  background: linear-gradient(90deg, #7b2fff, #00f5ff, #ff2d6b);
+  background-size: 200%;
+  animation: loading 1.2s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.loadingText {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #00f5ff;
+  letter-spacing: 0.3em;
+  animation: blink 1s step-end infinite;
+  margin-bottom: 14px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0; }
+}
+
+.errorText {
+  color: #ff2d6b;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border: 1px solid rgba(255,45,107,0.3);
+  background: rgba(255,45,107,0.05);
+}
+
+/* OUTPUT */
+.outputSection {
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.outputPanel {
+  background: #0a0f1e;
+  border: 1px solid rgba(0,245,255,0.25);
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0,245,255,0.07);
+}
+
+.outputPanel::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, #ff2d6b, #7b2fff);
+}
+
+.outputHeader {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.outputBadge {
+  background: rgba(0,245,255,0.08);
+  border: 1px solid rgba(0,245,255,0.3);
+  padding: 4px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #00f5ff;
+  letter-spacing: 0.3em;
+}
+
+.outputContent {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #c8d8f0;
+  white-space: pre-wrap;
+}
+
+.outputContent :global(strong) {
+  color: #00f5ff;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+
+.scanLine {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: #5a6a8a;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0,245,255,0.1);
+  letter-spacing: 0.15em;
+}
+
+@media (max-width: 600px) {
+  .header { padding: 20px; }
+  .container { padding: 0 16px 60px; }
+  .formGrid { grid-template-columns: 1fr; }
+}
