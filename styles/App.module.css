@@ -374,3 +374,121 @@
   transition: all 0.2s;
 }
 .signOutBtn:hover { background: rgba(255,45,107,0.1); border-color: #ff2d6b; }
+
+/* HEADER TOP */
+.headerTop {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+
+/* SAVED COMPS BUTTON */
+.savedBtn {
+  background: rgba(0,245,255,0.06);
+  border: 1px solid rgba(0,245,255,0.2);
+  color: #00f5ff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  padding: 6px 14px; cursor: pointer; transition: all 0.2s;
+}
+.savedBtn:hover { background: rgba(0,245,255,0.12); }
+
+/* SAVED PANEL */
+.savedPanel {
+  position: relative; z-index: 1;
+  background: #0a0f1e;
+  border-bottom: 1px solid rgba(0,245,255,0.15);
+  padding: 24px 40px;
+  animation: slideIn 0.3s ease;
+}
+
+.savedHeader { margin-bottom: 16px; }
+
+.emptyState {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; color: #5a6a8a;
+  letter-spacing: 0.1em; padding: 20px 0;
+}
+
+.savedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.savedCard {
+  background: #0f1628;
+  border: 1px solid rgba(0,245,255,0.1);
+  padding: 16px; transition: all 0.2s;
+}
+.savedCard:hover { border-color: rgba(0,245,255,0.3); }
+
+.savedCardGame {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+
+.savedCardTitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: #c8d8f0; margin-bottom: 6px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.savedCardMeta {
+  display: flex; gap: 10px; margin-bottom: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: #5a6a8a; letter-spacing: 0.1em;
+}
+
+.savedCardHeroes {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;
+}
+
+.heroChip {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: #8a9ab8;
+  background: rgba(0,245,255,0.05);
+  border: 1px solid rgba(0,245,255,0.1);
+  padding: 2px 7px; letter-spacing: 0.05em;
+}
+
+.savedCardActions { display: flex; gap: 8px; }
+
+.loadBtn {
+  flex: 1; padding: 7px;
+  background: transparent; border: 1px solid #00f5ff; color: #00f5ff;
+  font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+  cursor: pointer; transition: all 0.2s;
+}
+.loadBtn:hover { background: rgba(0,245,255,0.1); }
+
+.deleteBtn {
+  padding: 7px 12px;
+  background: transparent; border: 1px solid rgba(255,45,107,0.3); color: #ff2d6b;
+  font-family: 'Share Tech Mono', monospace; font-size: 12px;
+  cursor: pointer; transition: all 0.2s;
+}
+.deleteBtn:hover { background: rgba(255,45,107,0.1); border-color: #ff2d6b; }
+
+/* RESULTS TOOLBAR */
+.resultsToolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; flex-wrap: wrap; gap: 10px;
+}
+
+.resultsToolbar .sectionLabel { margin-bottom: 0; }
+
+.saveCompBtn {
+  background: transparent;
+  border: 1px solid rgba(0,245,255,0.3); color: #00f5ff;
+  font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+  padding: 7px 16px; cursor: pointer; transition: all 0.2s;
+}
+.saveCompBtn:hover { background: rgba(0,245,255,0.08); border-color: #00f5ff; }
+.saveCompBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.savedCompBtn {
+  border-color: rgba(46,204,113,0.4); color: #2ecc71;
+  background: rgba(46,204,113,0.06);
+}

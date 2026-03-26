@@ -20,14 +20,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>SYNAPSE — AI Team Comp Optimizer</title>
+        <title>TEAMTICS — AI Team Comp Optimizer</title>
         <meta name="description" content="AI-powered team composition optimizer for Valorant, League of Legends, and Overwatch 2. Win more games with data-driven comp analysis." />
       </Head>
 
       <div className={styles.page}>
         {/* NAV */}
         <nav className={styles.nav}>
-          <div className={styles.navLogo}>SYNAPSE</div>
+          <div className={styles.navLogo}>TEAMTICS</div>
           <button className={styles.navCta} onClick={handleSubscribe} disabled={loading}>
             {loading ? 'REDIRECTING...' : 'GET ACCESS — $9.99/mo'}
           </button>
@@ -41,7 +41,7 @@ export default function Home() {
             <span className={styles.accent}>BAD TEAM COMPS</span>
           </h1>
           <p className={styles.heroSub}>
-            SYNAPSE analyzes your game, map, rank, and playstyle — then builds the optimal team composition with full tactical breakdowns. Powered by advanced AI. Built for serious players.
+            TEAMTICS analyzes your game, map, rank, and playstyle — then builds the optimal team composition with full tactical breakdowns. Powered by advanced AI. Built for serious players.
           </p>
           <div className={styles.heroGames}>
             <span className={styles.gameTag}>VALORANT</span>
@@ -96,7 +96,7 @@ export default function Home() {
 
         {/* FOOTER */}
         <footer className={styles.footer}>
-          <div className={styles.footerLogo}>SYNAPSE</div>
+          <div className={styles.footerLogo}>TEAMTICS</div>
           <p className={styles.footerText}>AI-powered team composition optimizer. Not affiliated with Riot Games, Blizzard Entertainment, or any game publisher.</p>
         </footer>
       </div>
