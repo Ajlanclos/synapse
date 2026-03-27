@@ -19,12 +19,10 @@
 
 .navLogo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.2em;
-  background: linear-gradient(135deg, #00f5ff, #7b2fff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  height: 30px;
+}
+.navLogo img {
+  height: 100%;
 }
 
 .navCta {

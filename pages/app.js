@@ -219,21 +219,20 @@ export default function AppPage() {
 
   return (
     <>
-      <Head><title>TEAMTICS — Optimizer</title></Head>
+      <Head><title>TEAMTICS — Optimizer</title><link rel="icon" href="/logo.png" sizes="any" /></Head>
       <div className={styles.page}>
-        <header className={styles.header}>
-          <div className={styles.headerTop}>
-            <a href="/" className={styles.logo}>TEAMTICS</a>
-            <div className={styles.userBar}>
+        <nav className={styles.nav}>
+          <div className={styles.navLogo}><img src="/logo.png" alt="TEAMTICS" /></div>
+          
+          <div className={styles.userBar}>
               <button className={styles.savedBtn} onClick={toggleSaved}>
-                {showSaved ? '✕ CLOSE' : `📁 SAVED COMPS ${savedComps.length > 0 ? `(${savedComps.length})` : ''}`}
+                {showSaved ? '✕ CLOSE' : `SAVED COMPS ${savedComps.length > 0 ? `(${savedComps.length})` : ''}`}
               </button>
               <span className={styles.userEmail}>{session?.user?.email}</span>
               <button className={styles.signOutBtn} onClick={() => signOut({ callbackUrl: '/' })}>SIGN OUT</button>
             </div>
-          </div>
-          <div className={styles.tagline}>// TEAM COMPOSITION OPTIMIZER //</div>
-        </header>
+        </nav>
+
         <div className={styles.divider} />
 
         {/* SAVED COMPS PANEL */}
@@ -346,7 +345,7 @@ export default function AppPage() {
                   onClick={saveCurrentComp}
                   disabled={saving || !!savedId}
                 >
-                  {saving ? 'SAVING...' : savedId ? '✓ SAVED' : '💾 SAVE COMP'}
+                  {saving ? 'SAVING...' : savedId ? '✓ SAVED' : 'SAVE COMPOSITION'}
                 </button>
               </div>
 

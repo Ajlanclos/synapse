@@ -21,13 +21,14 @@ export default function Home() {
     <>
       <Head>
         <title>TEAMTICS — AI Team Comp Optimizer</title>
+        <link rel="icon" href="/logo.png" sizes="any" />
         <meta name="description" content="AI-powered team composition optimizer for Valorant, League of Legends, and Overwatch 2. Win more games with data-driven comp analysis." />
       </Head>
 
       <div className={styles.page}>
         {/* NAV */}
         <nav className={styles.nav}>
-          <div className={styles.navLogo}>TEAMTICS</div>
+          <div className={styles.navLogo}><img src="/logo.png" alt="TEAMTICS" /></div>
           <button className={styles.navCta} onClick={handleSubscribe} disabled={loading}>
             {loading ? 'REDIRECTING...' : 'GET ACCESS — $9.99/mo'}
           </button>

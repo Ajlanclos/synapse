@@ -1,6 +1,6 @@
 .page { position: relative; z-index: 1; min-height: 100vh; }
 
-.header { padding: 30px 40px 20px; text-align: center; }
+.header { padding: 30px 30px 20px; text-align: center; }
 
 .logo {
   display: block;
@@ -14,6 +14,27 @@
   background-clip: text;
   filter: drop-shadow(0 0 30px rgba(0,245,255,0.4));
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  border-bottom: 1px solid rgba(0,245,255,0.1);
+  position: sticky;
+  top: 0;
+  background: rgba(5,8,16,0.20);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.navLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  height: 30px;
+}
+.navLogo img {
+  height: 100%;
 }
 
 @keyframes pulseGlow {
@@ -52,7 +73,10 @@
 .gameTabs { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
 
 .gameTab {
-  flex: 1; min-width: 120px;
+  display: flex;
+  flex: 1;
+  flex-direction: column; 
+  min-width: 120px;
   padding: 14px 16px;
   background: #0a0f1e;
   border: 1px solid rgba(0,245,255,0.15);
@@ -354,8 +378,7 @@
 
 /* USER BAR */
 .userBar {
-  display: flex; align-items: center; gap: 12px;
-  margin-top: 10px; justify-content: center;
+  display: flex; align-items: center; gap: 12px; justify-content: center;
 }
 
 .userEmail {
